@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Student</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<style>
+		body {
+			background: rgb(30,193,195);
+			background: radial-gradient(circle, rgba(30,193,195,1) 0%, rgba(25,211,154,0.8133501400560224) 100%);
+		    color: #fff;
+		    min-height: 100vh; /* Ensures the gradient covers the full viewport height */
+		    margin: 0; /* Remove default body margin */
+		}
+	</style>
+</head>
+<body>
+<h1>Update Student</h1>
+<div class="container">
+    <form action="#" th:action="@{/students/update/{seatNumber}(seatNumber=${studentDetails.seatNumber})}" method="post">
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" name="name" th:value="${studentDetails.name}" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label>Phone Number:</label>
+            <input type="text" name="phoneNumber" th:value="${studentDetails.phoneNumber}" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label>Address:</label>
+            <input type="text" name="address" th:value="${studentDetails.address}" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label>Joining Date:</label>
+            <input type="text" name="joiningDate" th:value="${studentDetails.joiningDate}" class="form-control" required placeholder="YYYY-MM-DD" />
+        </div>
+        <div class="form-group">
+            <label>Fee:</label>
+            <input type="number" name="fee" th:value="${studentDetails.fee}" step="0.01" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label>Status:</label>
+            <select name="status" class="form-control" required>
+                <option value="Paid" th:selected="${studentDetails.status == 'Paid'}">Paid</option>
+                <option value="Unpaid" th:selected="${studentDetails.status == 'Unpaid'}">Unpaid</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Seat Number:</label>
+            <input type="text" name="seatNumber" th:value="${studentDetails.seatNumber}" class="form-control" required readonly />
+        </div>
+        <input type="submit" value="Update" class="btn btn-success" />
+    </form>
+</div>
+</body>
+</html>

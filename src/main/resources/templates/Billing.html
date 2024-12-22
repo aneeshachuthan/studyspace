@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Generate Bill</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background: rgb(30,193,195);
+            background: radial-gradient(circle, rgba(30,193,195,1) 0%, rgba(25,211,154,0.8133501400560224) 100%);
+            color: #fff;
+            min-height: 100vh; /* Ensures the gradient covers the full viewport height */
+            margin: 0; /* Remove default body margin */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Generate Bill</h1>
+        <form action="#" th:action="@{/generate-bill}" method="post" class="mt-4">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" name="name" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label>Type of Service:</label>
+                <input type="text" name="serviceType" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label>Amount:</label>
+                <input type="number" name="amount" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Generate Bill</button>
+			<a th:href="@{/billing/list}" class="btn btn" style="background-color: #ff7e5f; color: white; border: none;">Billing History</a>
+			<a href="/admin-page" class="btn btn-secondary">Home</a>
+        </form>
+    </div>
+</body>
+</html>

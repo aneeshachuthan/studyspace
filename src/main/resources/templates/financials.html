@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Financial Records</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background: rgb(30,193,195);
+            background: radial-gradient(circle, rgba(30,193,195,1) 0%, rgba(25,211,154,0.8133501400560224) 100%);
+            color: #fff;
+            min-height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        table {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Financial Records</h1>
+        <a href="/admin/financials/add" class="btn btn-primary mb-3">Add Financial Record</a>
+		<a href="/admin-page" class="btn btn-secondary mb-3">Home</a>
+		<div class="mt-2">
+		           <h3>Total Income: <span th:text="${totalIncome}"></span></h3>
+		           <h3>Total Expenditure: <span th:text="${totalExpenditure}"></span></h3>
+		       </div>
+
+
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="record : ${records}">
+                    <td th:text="${record.description}"></td>
+                    <td th:text="${record.amount}"></td>
+                    <td th:text="${record.date}"></td>
+                    <td th:text="${record.type}"></td>
+                    <td>
+                        <a th:href="@{/admin/financials/edit/{id}(id=${record.id})}" class="btn btn-warning btn-sm">Edit</a>
+                        <a th:href="@{/admin/financials/delete/{id}(id=${record.id})}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+       
+    </div>
+
+   
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seat Arrangement</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .form-container {
+            flex: 0 0 60%;
+            margin-left: 80px;
+            margin-right: 10%;
+        }
+        .seats-container {
+            flex: 0 0 50%;
+        }
+        .seat-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .seat-button {
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 10px;
+        }
+        .occupied {
+            background-color: red !important;
+			
+            cursor: not-allowed;
+        }
+		.spacer {
+		            grid-column: span 1; /* Span 3 columns for space */
+		        }
+		        .hspacer {
+		            grid-column: span 5; /* Span 3 columns for space */
+		        }
+		         .path10 {
+		            grid-column: span 10; /* Span 3 columns for space */
+		        }
+		        .path5 {
+		            grid-column: span 10; /* Span 3 columns for space */
+		        }
+    </style>
+    <script>
+        function fillSeatNumber(seatNumber) {
+            document.getElementById('seatNumberInput').value = seatNumber;
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="form-container">
+        <h1>Enter Your Information</h1>
+
+        <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+        <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+
+        <form action="#" th:action="@{/user/add}" method="post">
+            <div class="form-group">
+                <label>Seat Number: Choose from the Seat Arrangement</label>
+				
+                <input type="text" id="seatNumberInput" name="seatNumber" class="form-control" required readonly />
+            </div>
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" name="name" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label>Phone Number:</label>
+                <input type="text" name="phoneNumber" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label>Address:</label>
+                <input type="text" name="address" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label>Joining Date:</label>
+                <input type="date" name="joiningDate" class="form-control" required />
+            </div>
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </form>
+		
+        <br>
+        
+    </div>
+
+    <div class="seats-container">
+        <h2>Seat Arrangement</h2>
+		<br>
+        <div class="seat-grid">
+			<b>Entry</b>
+			<b>>>>></b>
+			<div class="spacer"></div>
+			<div class="spacer"></div>
+			<div class="spacer"></div>
+			<div class="spacer"></div>
+			
+			      
+			    
+
+			<!-- Row 1 -->
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(57)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 57)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 57)}">57</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(58)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 58)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 58)}">58</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(59)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 59)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 59)}">59</button>
+					<div class="path10"></div>
+				
+					<div class="path10"></div>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(56)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 56)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 56)}">56</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(55)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 55)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 55)}">55</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(54)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 54)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 54)}">54</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(53)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 53)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 53)}">53</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(52)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 52)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 52)}">52</button>
+					<div class="spacer"></div>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(51)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 51)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 51)}">51</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(50)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 50)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 50)}">50</button>
+
+			<!-- Row 2 -->
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(49)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 49)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 49)}">49</button>
+					<div class="path10"></div>
+								
+					<div class="path10"></div>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(40)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 40)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 40)}">40</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(41)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 41)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 41)}">41</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(42)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 42)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 42)}">42</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(43)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 43)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 43)}">43</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(44)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 44)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 44)}">44</button>
+					<div class="spacer"></div>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(45)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 45)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 45)}">45</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(46)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 46)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 46)}">46</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(47)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 47)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 47)}">47</button>
+
+			<!-- Row 3 -->
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(48)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 48)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 48)}">48</button>
+					<div class="path10"></div>
+					
+					   <div class="path10"></div>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(39)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 39)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 39)}">39</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(38)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 38)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 38)}">38</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(37)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 37)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 37)}">37</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(36)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 36)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 36)}">36</button>
+					<div class="spacer"></div>
+					
+					        <div class="spacer"></div>
+					         
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(35)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 35)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 35)}">35</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(34)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 34)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 34)}">34</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(33)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 33)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 33)}">33</button>
+					<div class="spacer"></div>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(25)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 25)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 25)}">25</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(26)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 26)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 26)}">26</button>
+
+			<!-- Row 4 -->
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(27)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 27)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 27)}">27</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(28)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 28)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 28)}">28</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(29)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 29)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 29)}">29</button>
+					<div class="spacer"></div>
+					            <button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(30)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 30)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 30)}">30</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(31)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 31)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 31)}">31</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(32)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 32)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 32)}">32</button>
+					<div class="spacer"></div>
+
+					<div class="path10"></div>
+					   
+					       <div class="path10"></div>
+						   <button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(24)" 
+						           th:classappend="${#lists.contains(occupiedSeats, 24)} ? 'occupied' : ''" 
+						           th:disabled="${#lists.contains(occupiedSeats, 24)}">24</button>
+						   <button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(24)" 
+						           th:classappend="${#lists.contains(occupiedSeats, 23)} ? 'occupied' : ''" 
+						           th:disabled="${#lists.contains(occupiedSeats, 23)}">23</button>
+						   <button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(22)" 
+						           th:classappend="${#lists.contains(occupiedSeats, 22)} ? 'occupied' : ''" 
+						           th:disabled="${#lists.contains(occupiedSeats, 22)}">22</button>
+						   <button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(21)" 
+						           th:classappend="${#lists.contains(occupiedSeats, 21)} ? 'occupied' : ''" 
+						           th:disabled="${#lists.contains(occupiedSeats, 21)}">21</button>
+
+						   <!-- Row 5 -->
+						   <button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(20)" 
+						           th:classappend="${#lists.contains(occupiedSeats, 20)} ? 'occupied' : ''" 
+						           th:disabled="${#lists.contains(occupiedSeats, 20)}">20</button>
+
+					<div class="spacer"></div>
+					            <button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(19)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 19)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 19)}">19</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(18)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 18)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 18)}">18</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(17)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 17)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 17)}">17</button>
+					<div class="spacer"></div>
+
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(10)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 10)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 10)}">10</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(11)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 11)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 11)}">11</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(12)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 12)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 12)}">12</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(13)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 13)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 13)}">13</button>
+					<div class="spacer"></div>
+					
+					<div class="spacer"></div>
+					
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(14)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 14)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 14)}">14</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(15)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 15)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 15)}">15</button>
+
+			<!-- Row 6 -->
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(16)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 16)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 16)}">16</button>
+					<div class="spacer"></div>
+					<div class="path10"></div>
+					     
+					       <div class="path10"></div>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(9)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 9)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 9)}">9</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(8)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 8)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 8)}">8</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(7)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 7)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 7)}">7</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(6)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 6)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 6)}">6</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(5)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 5)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 5)}">5</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(4)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 4)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 4)}">4</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(3)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 3)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 3)}">3</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(2)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 2)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 2)}">2</button>
+			<button type="button" class="btn btn-success seat-button" onclick="fillSeatNumber(1)" 
+			        th:classappend="${#lists.contains(occupiedSeats, 1)} ? 'occupied' : ''" 
+			        th:disabled="${#lists.contains(occupiedSeats, 1)}">1</button>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

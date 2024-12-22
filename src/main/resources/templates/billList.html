@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List of Bills</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">List of Bills</h1>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Bill Number</th>
+                    <th>Name</th>
+                    <th>Type of Service</th>
+                    <th>Amount</th>
+                    <th>Date Created</th>
+                    <th>Time Created</th> <!-- New column for time -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${#lists.isEmpty(bills)}">
+                    <td colspan="6" class="text-center">No bills generated yet.</td>
+                </tr>
+                <tr th:each="bill : ${bills}">
+                    <td th:text="${bill.billNumber}"></td>
+                    <td th:text="${bill.name}"></td>
+                    <td th:text="${bill.serviceType}"></td>
+                    <td th:text="${bill.amount}"></td>
+                    <td th:text="${#dates.format(bill.createdDate, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${#dates.format(bill.createdDate, 'HH:mm:ss')}"></td> <!-- Format time -->
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/billing}" class="btn btn-primary">Generate New Bill</a>
+		<a href="/admin-page" class="btn btn-secondary">Home</a>
+    </div>
+</body>
+</html>

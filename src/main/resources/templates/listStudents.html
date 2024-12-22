@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student List</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background: rgb(30,193,195);
+            background: radial-gradient(circle, rgba(30,193,195,1) 0%, rgba(25,211,154,0.8133501400560224) 100%);
+            color: #fff;
+            min-height: 100vh; /* Ensures the gradient covers the full viewport height */
+            margin: 0; /* Remove default body margin */
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            const showAlert = /*[[${alert}]]*/ false; // Use Thymeleaf to check the alert flag
+            if (showAlert) {
+                alert("Today is the 24th day of the month! Please note that all student statuses may be updated.");
+            }
+        };
+    </script>
+</head>
+<body>
+<h1>Student List</h1>
+<div class="container">
+    <form action="#" th:action="@{/students/all}" method="get">
+        <input type="text" name="keyword" placeholder="Search by name, address, status, or phone number" class="form-control" />
+        <input type="submit" value="Search" class="btn btn-primary mt-2" />
+        <a th:href="@{/admin-page}" class="btn btn-secondary mt-2 ml-4">Home</a>
+		<a th:href="@{/students/create}" class="btn btn mt-2 ml-4" style="background-color: #ff7e5f; color: white; border: none;">Add Student</a>
+    </form>
+
+    <form action="#" th:action="@{/students/update-status}" method="get" class="mt-3">
+        <input type="submit" value="Update Status to Unpaid on First day of Every Month" class="btn btn-info" />
+		
+    </form>
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>Seat.No</th>
+                <th>Name</th>
+                <th>Fee</th>
+                <th>Status</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Joining Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.seatNumber}"></td>
+                <td th:text="${student.name}"></td>
+                <td th:text="${student.fee}"></td>
+                <td th:class="${student.status == 'Unpaid' ? 'bg-danger text-white' : student.status == 'Paid' ? 'bg-success text-white' : ''}" th:text="${student.status}"></td>
+                <td th:text="${student.phoneNumber}"></td>
+                <td th:text="${student.address}"></td>
+                <td th:text="${student.joiningDate}"></td>
+                <td>
+                    <a th:href="@{/students/update/{seatNumber}(seatNumber=${student.seatNumber})}" class="btn btn-warning btn-sm">Edit</a>
+                    <a th:href="@{/students/delete/{seatNumber}(seatNumber=${student.seatNumber})}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

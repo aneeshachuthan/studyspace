@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<style>
+		body {
+			background: rgb(30,193,195);
+			background: radial-gradient(circle, rgba(30,193,195,1) 0%, rgba(25,211,154,0.8133501400560224) 100%);
+		    color: #fff;
+		    min-height: 100vh; /* Ensures the gradient covers the full viewport height */
+		    margin: 0; /* Remove default body margin */
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+    <div class="message" th:if="${message != null}">[[${message}]]</div>
+    <h2>Registration Form</h2>
+    <form th:action="@{/registration}" method="post" th:object="${user}">
+        <div class="form-group">
+            <label for="fullname">Fullname:</label>
+            <input th:field="*{fullname}" type="text" id="fullname" name="fullname" class="form-control" placeholder="Enter your fullname" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input th:field="*{email}" type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input th:field="*{password}" type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+        </div>
+        <input type="submit" value="Register" class="btn btn-primary" onclick="return Validate()">
+    </form>
+    <script>
+        function Validate() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            if (password != confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</div>
+</body>
+</html>

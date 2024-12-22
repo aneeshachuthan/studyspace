@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Delete Student</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<style>
+		body {
+			background: rgb(30,193,195);
+			background: radial-gradient(circle, rgba(30,193,195,1) 0%, rgba(25,211,154,0.8133501400560224) 100%);
+		    color: #fff;
+		    min-height: 100vh; /* Ensures the gradient covers the full viewport height */
+		    margin: 0; /* Remove default body margin */
+		}
+	</style>
+</head>
+<body>
+<h1>Delete Student</h1>
+<div class="container">
+    <p>Are you sure you want to delete <span th:text="${studentDetails.name}"></span>?</p>
+    <form action="#" th:action="@{/students/delete/{seatNumber}(seatNumber=${studentDetails.seatNumber})}" method="post">
+        <input type="hidden" name="name" th:value="${studentDetails.name}" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </form>
+    <a href="/students/all" class="btn btn-secondary mt-2">Cancel</a>
+</div>
+</body>
+</html>

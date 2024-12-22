@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<style>
+		body {
+			background: rgb(30,193,195);
+			background: radial-gradient(circle, rgba(30,193,195,1) 0%, rgba(25,211,154,0.8133501400560224) 100%);
+		    color: #fff;
+		    min-height: 100vh; /* Ensures the gradient covers the full viewport height */
+		    margin: 0; /* Remove default body margin */
+		}
+	</style>
+</head>
+<body>
+    <div class="header text-center">
+        <h1>USER Dashboard</h1>
+    </div>
+    <div class="container">
+        <h2>Welcome, [[${user.getFullname()}]]</h2>
+        
+        <span sec:authorize="isAuthenticated">
+            <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+        </span>
+    </div>
+</body>
+</html>

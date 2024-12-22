@@ -1,0 +1,66 @@
+body {
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: #fff;
+    min-height: 100vh; /* Ensures the gradient covers the full viewport height */
+    margin: 0; /* Remove default body margin */
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #293;
+}
+
+a {
+    color: #ff7e5f;
+}
+
+a:hover {
+    color: #feb47b;
+}
+
+.table {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+}
+
+.table th {
+    background-color: #ff7e5f;
+    color: #fff;
+}
+
+.table td {
+    color: #293;
+}
+
+.btn {
+    background: #ff7e5f;
+    border: none;
+}
+
+.btn:hover {
+    background: #feb47b;
+}
+
+.modal-content {
+    background: #fff;
+}
+
+.modal-header, .modal-footer {
+    border: none;
+}
+
+.message {
+    background-color: #ff7e5f;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
